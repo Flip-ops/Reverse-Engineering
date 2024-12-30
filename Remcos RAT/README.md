@@ -46,7 +46,24 @@ BreakingSecurity[.]net (That's the redteam that created the tool thats now used 
 - Encryption: AES, XOR, RC4 KSA & PRGA, OpenSSL ECDSA, HMAC, SHA256, generates random numbers via WinAPI CryptGenRandom @ 0x432962
 - Also the malware has the ability to create suspended processes & Process Hollowing.
 
+<br>
 
+### TOOLS & SOURCES USED:
+
+
+#### Tools:  
+- PE Studio  
+- CFF Explorer VIII  
+- Ghidra  
+- x32dbg Debugger  
+- Regshot  
+- Capa  
+- Cyberchef  
+
+#### Source used for second opinion to verify analysis:  
+- Elastic Security Labs
+
+<br>
 
 ## Verifying work by external sources - Could not find or connect theses, but got info from external sources after done:
 - Audio recording capabilities according to Elastic
@@ -56,13 +73,11 @@ BreakingSecurity[.]net (That's the redteam that created the tool thats now used 
 - See further info revealed by the tool Capa for read longer down.
 
 
-
-
 <br>
 <br>
 
-# ANALYSIS PROCESS IN CHRONOLOGICAL ORDER OF HOW ANALYSIS WAS DONE
 
+---------------------------------------
 
 
 ### INDEX LIST
@@ -93,25 +108,26 @@ DECRYPTING REMOCOS RAT CONFIG FILE
 
 10. Using Capa findings regarding RC4 - Decrypting config file with CFF Explorer VIII & Cyberchef 
 
-
-
+<br>
 <br>
 
-### TOOLS & SOURCES USED:
+### STRUCTURE
 
+- FINDINGS SUMMARY:
+- HOW:
+- PROOF:
 
-#### Tools:  
-- PE Studio  
-- CFF Explorer VIII  
-- Ghidra  
-- x32dbg Debugger  
-- Regshot  
-- Capa  
-- Cyberchef  
+ ----------------------------------------------
 
-#### Source used for second opinion to verify analysis:  
-- Elastic Security Labs  
+<br>
+<br>
+<br>
+<br>
 
+# ANALYSIS PROCESS - CHRONOLOGICAL ORDER
+
+<br>
+<br>
 <br>
 <br>
 
