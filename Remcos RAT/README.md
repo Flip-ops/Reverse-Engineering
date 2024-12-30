@@ -583,7 +583,8 @@ function @ 0x417245
         api: ResumeThread @ 0x417582  
 
 
-
+<br>
+<br>
 
 
 # DECRYPTING REMOCOS RAT CONFIG FILE 
