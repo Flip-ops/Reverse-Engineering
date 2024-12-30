@@ -388,7 +388,7 @@ LPCSTR pwszDriver for CreateDCA |00417fb2	|PUSH s_DISPLAY_0046bac8
 Continuation of C2 stuff | b | c 
 ---|---|--- 
 WININET.DLL::InternetOpenW (HTTP request, connect to URL)	|0041a53e	|CALL dword ptr [->WININET.DLL::InternetOpenW]
-WS2_32.DLL::send (send data on socket) (~geolocation recon)	|0041a54e	|PUSH u_http://geopluginnet/json.gp_0046b95c
+WS2_32.DLL::send (send data on socket) (~geolocation recon)	|0041a54e	|PUSH u_http://geoplugin[.]net/json.gp_0046b95c
 WININET.DLL::InternetOpenUrlW (Read Data from Internet)		|0041a554	|CALL dword ptr [->WININET.DLL::InternetOpenUrlW]
 WININET.DLL::InternetReadFile (read data from Internet)		|0041a56d	|CALL dword ptr [->WININET.DLL::InternetReadFile]
 URLMON.DLL::URLOpenBlockingStream (Download URL)                |0041abd1	|CALL dword ptr [->URLMON.DLL::URLOpenBlockingStreamW]
