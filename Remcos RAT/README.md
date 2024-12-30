@@ -168,6 +168,7 @@ Symbol Types: Function Labels
 
 <br>
 
+-----------------------------------------------------------
 ### 2. Step two involved following suspicious strings
 
 #### FINDINGS SUMMARY:  
@@ -184,6 +185,7 @@ Symbol Types: Function Labels
 
 <br>
 
+-----------------------------------------------------------
 ### 3. Function Call Graph - Continuing the trail from Clipboard investigation 
 
 #### FINDINGS SUMMARY: 
@@ -199,6 +201,7 @@ Referenses --> Show references to address
 
 <br>
 
+-----------------------------------------------------------
 ### 4. Function Graph - Continuing the trail from Clipboard investigation
 
 #### FINDINGS SUMMARY: 
@@ -213,6 +216,7 @@ Referenses --> Show references to address
 
 <br>
 
+-----------------------------------------------------------
 ### 5. "CALL" - Looking for more calls
 
 #### FINDINGS SUMMARY: 
@@ -235,6 +239,7 @@ while getFunctionContaining(i.getAddress()) == fn:
 
 <br>
 
+-----------------------------------------------------------
 ### 6. Debugger Dynamic Analysis - x32dbg Debugger
 
 #### FINDINGS SUMMARY: 
@@ -282,7 +287,9 @@ IP: 45.80.158[.]30
 hostname: firewarzone.ydns[.]eu  
 reverse lookup: rem.pushswroller[.]eu  
 
+<br>
 
+-----------------------------------------------------------
 ### 7. Executing malware and observing registry changes
 
 #### FINDINGS SUMMARY: 
