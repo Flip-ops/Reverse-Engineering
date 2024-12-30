@@ -13,6 +13,7 @@
 - Binary:  
 rmclient.exe 
 <br>
+
 - Used port: 23101  
 - Domains:  
 sun.drillmmcsnk[.]eu:23101  
@@ -20,6 +21,7 @@ rem.pushswroller[.]eu:23101
 firewarzone.ydns[.]eu:23101  
 - IP: 45.80.158[.]30  
 <br>
+
 - Registry:  
 "Software\Rmcghghyrtssxr-7RL1P2\"
 <br>
@@ -203,6 +205,8 @@ Referenses --> Show references to address
 #### HOW:
 - Window --> Script Manager --> Create New Script --> Python --> Add below script:  
 <br>
+
+
 >fn = getFunctionAt(currentAddress)  
 i = getInstructionAt(currentAddress)  
 while getFunctionContaining(i.getAddress()) == fn:  
@@ -229,6 +233,7 @@ Domain: firewarzone.ydns[.]eu:23101
 
 #### PROOF:
 - Rawdata:  
+
 >0019FC54  004742F8  0d97708b73548a54a6a9995f484e942e3d72050e7a02d71ab16ed776e6300410.&"Software\\Rmcghghyrtssxr-7RL1P2\\"
 0019FC58  00000000  
 0019FC5C  00000000  
@@ -242,13 +247,19 @@ Domain: firewarzone.ydns[.]eu:23101
 - Seems to be a regkey:  
 >"Software\\Rmcghghyrtssxr-7RL1P2\\"
 <br>
-02CAE948  00775B30  "S On  | sun.drillmmcsnk[.]eu:23101"  
+
+
+> 02CAE948  00775B30  "S On  | sun.drillmmcsnk[.]eu:23101"  
 02CAE948  00775B30  "S On  | rem.pushswroller[.]eu:23101"  
 02CAE948  00775B30  "S On  | firewarzone.ydns[.]eu:23101"  
 <br>
-007758E0 "Connecting  | TLS On  | rem.pushswroller[.]eu:23101"  
+
+
+> 007758E0 "Connecting  | TLS On  | rem.pushswroller[.]eu:23101"  
 02CAFBB0  007758E0  "Connecting  | TLS On  | firewarzone.ydns[.]eu:23101"  
 <br>
+
+
 
 - Looking it up externally on Virustotal confirms malicious IOCs:  
 IP: 45.80.158[.]30  
@@ -277,15 +288,19 @@ Files added: 0
 Files [attributes?] modified: 0  
 
 - Interesting registry keys added:  
-RegCreateKey HKCU\Software\Rmcghghyrtssxr-7RL1P2\  
-<br> 
-Operation: RegSetValue  
+>RegCreateKey HKCU\Software\Rmcghghyrtssxr-7RL1P2\  
+<br>
+
+
+>Operation: RegSetValue  
 Path: HKCU\Software\Rmcghghyrtssxr-7RL1P2\licence  
 Result: SUCCESS  
 Type: REG_SZ  
 Data: 8FBF0123A853BB276AFD9A03F573AE61  
 <br> 
-Operation: RegSetValue  
+
+
+>Operation: RegSetValue  
 Path: HKCU\Software\Rmcghghyrtssxr-7RL1P2\exepath  
 Result: SUCCESS  
 Type: REG_BINARY  
@@ -326,7 +341,7 @@ C:\Users\user\AppData\Local\VirtualStore\ProgramData\remcos\logs.dat
 
 
 ### 8. C2 and Proxy tunneling:
- C2 and Proxy tunneling | b | c 
+C2 and Proxy tunneling | b | c 
 ---|---|---
 WS2_32.DLL::recv (receive data on socket)                   |0040459f   |CALL dword ptr [->WS2_32.DLL::recv]
 ThreadLocalStoragePointer                                   |00405042   |MOV EAX,FS:[offset ThreadLocalStoragePointer]
@@ -339,9 +354,9 @@ KERNEL32.DLL::ReadFile (ReverseShell)                       |00405291   |CALL dw
 KERNEL32.DLL::WriteFile (file-transfer & file-system write)	|0040538e   |CALL dword ptr [->KERNEL32.DLL::WriteFile]
 URLMON.DLL::URLDownloadToFileW                              |00406318   |CALL dword ptr [->URLMON.DLL::URLDownloadToFileW]
 
+<br>
 
-
- Interesting process creations | b | c 
+Interesting process creations | b | c 
 ---|---|---
 LPSTR lpCommandLine for CreateProcessA      |004069f6   |PUSH s_/k_%windir%\System32\reg.exe_ADD_00465910
 LPCSTR lpApplicationName for CreateProcessA |004069fb   |PUSH s_C:\Windows\System32\cmd.exe_00465994
@@ -349,17 +364,17 @@ call 2 createProc w Push instruct           |00406a00   |CALL dword ptr [->KERNE
 WS2_32.DLL::gethostbyname (Resolve DNS)     |004137af   |CALL dword ptr [->WS2_32.DLL::gethostbyname]
 URLMON.DLL::URLDownloadToFileW              |004157a7   |CALL dword ptr [->URLMON.DLL::URLDownloadToFileW]
 
+<br>
 
-
- System Shutdown/Reboot | b | c 
+System Shutdown/Reboot | b | c 
 ---|---|---
 ........................                |0041595b   |CALL dword ptr [->USER32.DLL::ExitWindowsEx]
 LPCSTR lpProcName for GetProcAddress    |00415966   |PUSH s_SetSuspendState_0046b9b0
 LPCSTR lpLibFileName for LoadLibraryA   |0041596b   |PUSH s_PowrProf.dll_0046b9c0
 
+<br>
 
-
- Then Screen capture/recording (and audio recording according to Elastic) | b | c 
+Then Screen capture/recording (and audio recording according to Elastic) | b | c 
 ---|---|---  
 LPCSTR pwszDriver for CreateDCA |00417fb2	|PUSH s_DISPLAY_0046bac8  
 ...								|00417fb9	|CALL dword ptr [->GDI32.DLL::CreateDCA]
@@ -368,65 +383,73 @@ LPCSTR pwszDriver for CreateDCA |00417fb2	|PUSH s_DISPLAY_0046bac8
 ...								|00418144	|CALL dword ptr [->GDI32.DLL::BitBlt]
 ...								|0041826b	|CALL dword ptr [->GDI32.DLL::GetDIBits]
 
+<br>
 
-
- Continuation of C2 stuff | b | c 
+Continuation of C2 stuff | b | c 
 ---|---|--- 
 WININET.DLL::InternetOpenW (HTTP request, connect to URL)	|0041a53e	|CALL dword ptr [->WININET.DLL::InternetOpenW]
-WS2_32.DLL::send (send data on socket) (~geolocation recon)	|0041a54e	|PUSH u_http://geoplugin.net/json.gp_0046b95c
+WS2_32.DLL::send (send data on socket) (~geolocation recon)	|0041a54e	|PUSH u_http://geopluginnet/json.gp_0046b95c
 WININET.DLL::InternetOpenUrlW (Read Data from Internet)		|0041a554	|CALL dword ptr [->WININET.DLL::InternetOpenUrlW]
 WININET.DLL::InternetReadFile (read data from Internet)		|0041a56d	|CALL dword ptr [->WININET.DLL::InternetReadFile]
-URLMON.DLL::URLOpenBlockingStream (Download URL)		    |0041abd1	|CALL dword ptr [->URLMON.DLL::URLOpenBlockingStreamW]
+URLMON.DLL::URLOpenBlockingStream (Download URL)                |0041abd1	|CALL dword ptr [->URLMON.DLL::URLOpenBlockingStreamW]
+
+<br>
 
 
- Other indicators at other places in code | b | c 
+Other indicators at other places in code | b | c 
 ---|---|--- 
 WS2_32.DLL::send (send data on socket)				|00426118	|CALL dword ptr [->WS2_32.DLL::send]
 wininet.dll							                |00457428	|PTR_InternetOpenUrlW_00457428	addr WININET.DLL::InternetOpenUrlW
 http shell open cmd						            |0046bc94	|u_http\shell\open\command_0046bc94	unicode u"http\\shell\\open\\command"
+
+<br>
 
 
 Malware checks if it's being debugged | b | c 
 ---|---|--- 
 IsDebuggerPresent						    |0043a755	|CALL dword ptr [->KERNEL32.DLL::IsDebuggerPresent]
 
+<br>
 
- Keylogger - Clipboard usage | b | c 
+
+Keylogger - Clipboard usage | b | c 
 ---|---|--- 
 Clipboard	GetClipboardData				|0045738c	|PTR_GetClipboardData_0045738c	addr USER32.DLL::GetClipboardData
 Clipboard	CloseClipboard					|004573a4	|PTR_CloseClipboard_004573a4	addr USER32.DLL::CloseClipboard
 Clipboard	OpenClipboard					|004573a8	|PTR_OpenClipboard_004573a8	addr USER32.DLL::OpenClipboard
 keylogger							        |00465b24	|s_Offline_Keylogger_Started_00465b24	ds "Offline Keylogger Started"
 
+<br>
 
-
- Likely webcamera access capabilities | b | c 
+Likely webcamera access capabilities | b | c 
 ---|---|--- 
 OpenCamera							        |0045b0d4	|s_operator_""_0045b0d4	ds "operator \"\" "
 
+<br>
 
-
- Privilege Escalation Capabilities | b | c 
+Privilege Escalation Capabilities | b | c 
 ---|---|--- 
 Elevate to Admin						    |004657d0	|u_Elevation:Administrator!new:_004657d0	unicode u"Elevation:Administrator!new:"
 
+<br>
 
-
- UAC bypass | b | c 
+UAC bypass | b | c 
 ---|---|--- 
 reg								|00465910	|s_/k_%windir%\System32\reg.exe_ADD_00465910	ds "/k %windir%\\System32\\reg.exe ADD HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /v EnableLUA /t REG_DWORD /d 0 /f"
 cmd								|00465994	|s_C:\Windows\System32\cmd.exe_00465994	ds "C:\\Windows\\System32\\cmd.exe"
 
+<br>
 
-
- Persistance | b | c 
+Persistance | b | c 
 ---|---|--- 
 Shell folders							                    |00466010	|Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders	
 Runkey								                        |004660f0	|u_Software\Microsoft\Windows\Curre_004660f0	unicode u"Software\\Microsoft\\Windows\\CurrentVersion\\Run
 Shell Run cmd (Elastic: used to restart Remcos binary)		|004663b0	|u_CreateObject("WScript.Shell").Ru_004663b0	unicode u"CreateObject(\"WScript.Shell\").Run \"cmd /c \"\""
 
+<br>
 
- Initialization & Activation | b | c 
+
+Initialization & Activation | b | c 
 ---|---|--- 
 txt								                        |0046660c	|s_license_code.txt_0046660c	ds "license_code.txt"
 Remcos initialized						                |00466644	|s_Remcos_Agent_initialized_00466644	ds "Remcos Agent initialized"
@@ -435,40 +458,44 @@ Process Injection for Watchdog(Masquerading)			|0046b768	|u_svchost.exe_0046b768
 Process Injection for Watchdog(Masquerading)			|0046b780	|u_rmclient.exe_0046b780	unicode u"rmclient.exe"
 Process Injection for Watchdog(Masquerading)			|0046b79c	|u_fsutil.exe_0046b79c	unicode u"fsutil.exe"
 
+<br>
+
 
 Local recon (1/3) | b | c 
 ---|---|--- 
 Email, likely data dump						            |0046b7f8	|s_FoxMailRecovery_0046b7f8	ds "FoxMailRecovery"
 Email								                    |0046c17c	|s_/emailAddress=_0046c17c	ds "/emailAddress="
 
+<br>
 
- Shlwapi.dll likely used to query, set and delete keys in registry | b | c 
+
+Shlwapi.dll likely used to query, set and delete keys in registry | b | c 
 ---|---|--- 
 DLL								                        |0046b858	|s_Shlwapi.dll_0046b858	ds "Shlwapi.dll"
 
+<br>
 
-
- Local recon (2/3) | b | c 
+Local recon (2/3) | b | c 
 ---|---|--- 
 txt (likely where gathered system info is stored)		|0046b9d0	|u_\sysinfo.txt_0046b9d0	unicode u"\\sysinfo.txt"
 diag								                    |0046ba00	|u_dxdiag_0046ba00	unicode u"dxdiag"
 GetCursorInfo							                |0046ba80	|s_GetCursorInfo_0046ba80	ds "GetCursorInfo"
 
+<br>
 
-
- Seems to be used to play a alert sound on host, reason unknown | b | c 
+Seems to be used to play a alert sound on host, reason unknown | b | c 
 ---|---|--- 
 alarm.wav							                    |0046bb70	|s_alarm.wav_0046bb70	ds "alarm.wav"
 
+<br>
 
-
- Local recon (3/3) | b | c 
+Local recon (3/3) | b | c 
 ---|---|--- 
 Checks installed programs via Uninstall		            |0046bd30	|s_Software\Microsoft\Windows\Curre_0046bd30	ds "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
 
 
 
- Might be used to access data in a online picture to be loaded into for example memory | b | c 
+Might be used to access data in a online picture to be loaded into for example memory | b | c 
 ---|---|--- 
 image2stream		|0046f5c0	|ds "GdipLoadImageFromStream"
 image2stream		|0046f5da	|ds "GdipSaveImageToStream"
@@ -501,7 +528,7 @@ namespace:  host-interaction/process/create
 author:     william.ballenthin@mandiant.com  
 scope:      basic block  
 mbc:        Process::Create Process::Create Suspended Process [C0017.003]  
-<br>
+...  
 basic block @ 0x417344 in function 0x417245    
 number: 0x4 = CREATE_SUSPENDED @ 0x417362   
 or:  
@@ -516,21 +543,18 @@ author:      william.ballenthin@mandiant.com
 scope:       function  
 att&ck:      Defense Evasion::Process Injection::Process Hollowing [T1055.012], Defense Evasion::Reflective Code Loading [T1620]  
 references:  http://www.autosectools.com/process-hollowing.pdf, https://www.andreafortuna.org/2017/10/09/understanding-process-hollowing/  
-<br>
+...  
 function @ 0x417245  
   and:  
-  <br>
     match: create process suspended @ 0x417344  
       and:  
         or:  
           number: 0x4 = CREATE_SUSPENDED @ 0x417362  
         or:  
           api: CreateProcess @ 0x41736C  
-          <br> 
     match: write process memory @ 0x417245  
       or:  
         api: WriteProcessMemory @ 0x417558  
-        <br>
     match: resume thread @ 0x41757F  
       or:  
         api: ResumeThread @ 0x417582  
@@ -547,13 +571,19 @@ function @ 0x417245
 
 #### FINDINGS SUMMARY: 
 - Three domains:  
+rem.pushswroller[.]eu:23101  
+firewarzone.ydns[.]eu:23101  
+sun.drillmmcsnk[.]eu:23101 
+
 - License key: 8FBF0123A853BB276AFD9A03F573AE61  
-(Previously also observed added to registry:  
-Operation: RegSetValue  
-Path: HKCU\Software\Rmcghghyrtssxr-7RL1P2\licence  
-Result: SUCCESS  
-Type: REG_SZ  
-Data: 8FBF0123A853BB276AFD9A03F573AE61)  
+(  
+&nbsp;&nbsp;Previously also observed added to registry:  
+&nbsp;&nbsp;Operation: RegSetValue  
+&nbsp;&nbsp;Path: HKCU\Software\Rmcghghyrtssxr-7RL1P2\licence  
+&nbsp;&nbsp;Result: SUCCESS  
+&nbsp;&nbsp;Type: REG_SZ  
+&nbsp;&nbsp;Data: 8FBF0123A853BB276AFD9A03F573AE61  
+)    
 
 
 #### HOW & PROOF:
@@ -562,7 +592,7 @@ Data: 8FBF0123A853BB276AFD9A03F573AE61)
 Loading the malware binary and in the left pane going to Resource Editor, then in the second to left pane clicking RCData and it's subfolder called "SETTINGS" (which contains the config file for the malware, as well as the first byte as RC4 key length and the RC4 key itself.
 
 - Lookin at the Hex shown in CFF Explorer:  
-First byte: 66 (is the size of RC4 key)
+First byte: 66 (the size of RC4 key)
 
 - Which means RC4 key is the 66 bytes following the first byte above (hex 66):  
 >208A19018A5F3F1DA2278174B4326D6052312F542D852956E5989A18EF7F9982CE4AC9DA37E169D8DC48B841069ED5F3244A8473FC0A86543FF271247C8F37ACDC94B9A51D02304199822E167575915D31F3AB902FAB6BC9FB79597B690DA865B801BADA7337
