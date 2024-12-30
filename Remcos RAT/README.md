@@ -353,8 +353,8 @@ and
 C:\Users\user\AppData\Local\VirtualStore\ProgramData\remcos\logs.dat  
 
 
-
-
+<br>
+<br>
 
 
 
@@ -516,7 +516,7 @@ Local recon (3/3) | b | c
 ---|---|--- 
 Checks installed programs via Uninstall		            |0046bd30	|s_Software\Microsoft\Windows\Curre_0046bd30	ds "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
 
-
+<br>
 
 Might be used to access data in a online picture to be loaded into for example memory | b | c 
 ---|---|--- 
